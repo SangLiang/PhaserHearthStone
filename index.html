@@ -10,24 +10,7 @@
 </head>
 <body>
 	<script src="resource/phaser.js"></script>
-	<script>
-		var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-
-		function preload() {
-			game.load.image('background', './resource/background.png');
-			game.load.image('deadWing', './resource/dead_wing.png');
-			game.load.image('monster', './resource/ogre.png');
-		}
-
-		function create() {
-			game.add.sprite(0, 0, 'background');
-			var card1 = game.add.sprite(0, 0, 'deadWing');
-			var card2 = game.add.sprite(100, 100, 'monster');
-		}
-
-		function update() {
-		}
-	</script>
+	<script src="./dist/main.js"></script>
 </body>
 
 </html>

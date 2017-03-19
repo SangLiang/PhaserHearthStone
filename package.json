@@ -20,5 +20,8 @@
     "gulp-concat": "^2.6.0",
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.1"
+  },
+  "dependencies": {
+    "gulp-browserify": "^0.5.1"
   }
 }
