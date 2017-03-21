@@ -28,7 +28,7 @@ gulp.task("browserify",function(){
 
 // 监听任务
 gulp.task('watch', function () {
-	gulp.watch(["./main.js","./modules/*.js"],["browserify"]);
+	gulp.watch(["./main.js","./modules/**/*.js"],["browserify"]);
 });
 
 gulp.task('default',['webserver','watch'], function () {
