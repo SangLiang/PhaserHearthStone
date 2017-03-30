@@ -4,6 +4,7 @@
 
 var BackGround = require("./BackGround");
 var CardGenerator = require("./CardGenerater");
+var HeroHead = require("./HeroHead");
 
 function UIManager(game){
     this.backgroundObj = null; // 背景图
@@ -15,9 +16,15 @@ function UIManager(game){
 }
 
 UIManager.prototype.init = function(game){
-    this.backgroundObj = this.setBackGround(game);
+    this.backgroundObj = this.setBackGround(game);  // 生成背景图
+    
     var card = new CardGenerator();
     card.buildCardList(15,1,3);
+
+    var heroHead = new HeroHead();
+    console.log(heroHead);
+
+    console.log(1);
 }
 
 // 设置背景

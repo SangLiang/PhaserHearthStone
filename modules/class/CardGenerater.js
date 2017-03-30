@@ -14,7 +14,6 @@ CardGenerator.prototype.init = function () {
 // param maxIndex [number] 最大索引
 CardGenerator.prototype.buildCardList = function (cardLength, minIndex, maxIndex) {
     var cardList = [];
-    console.log(1);
     for (var i = 0; i < cardLength; i++) {
         var ramdom = Math.floor(Math.random() * maxIndex) + minIndex;
         cardList.push(ramdom);
