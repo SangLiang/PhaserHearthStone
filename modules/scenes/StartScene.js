@@ -17,7 +17,6 @@ function StartScene(game) {
 
         startButton.inputEnabled = true;
         startButton.events.onInputDown.add(function () {
-            console.log(startButton);
             game.state.start("GameScene");
         },this);
     }
