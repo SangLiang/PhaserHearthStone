@@ -1,4 +1,6 @@
-// 游戏卡牌的配置文件
+/**
+ * 游戏卡牌的配置文件
+ */
 
 var CardConfig = {
     "card_info": [{
@@ -30,6 +32,6 @@ var CardConfig = {
         "hp": 9,
         "id": 4
     }],
-    // 卡组长度
-    "cardLength": 15,
+    "cardLength": 15, // 卡组长度
+    "cardInitialLength": 3, // 卡组初始化长度
 }

@@ -1,3 +1,7 @@
+/**
+ * 游戏开始场景 
+ */
+
 function StartScene(game) {
     this.preload = function () {
     }

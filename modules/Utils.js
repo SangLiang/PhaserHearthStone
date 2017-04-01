@@ -1,4 +1,6 @@
-// 常用函数
+/**
+ * 常用函数
+ */
 
 var Utils = {
     extend: function (child, parent) {
@@ -7,7 +9,7 @@ var Utils = {
         for (var i in p) {
             c[i] = p[i];
         }
-        　　　　c.uber = p;
+        c.uber = p;
     }
 }
 

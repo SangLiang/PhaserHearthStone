@@ -1,4 +1,7 @@
-// 游戏主场景
+/**
+ * 游戏主场景
+ */
+
 var UIPanel = require("../class/UIManager");
 
 function GameScene(game) {
