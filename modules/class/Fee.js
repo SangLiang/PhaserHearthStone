@@ -1,11 +1,24 @@
 /**
- * 玩家费用管理类
+ * 费用管理类
  */
 
-function Fee(){
+function Fee(game, x, y) {
+    this.feeObj = null;
+    this.x = x || game.world.width - 30;
+    this.y = y || 0;
+    this.init(game);
+}
 
-} 
+Fee.prototype.init = function (game) {
+    this.feeObj = this.setFeePic(game);
+}
 
-Fee.prototype.init = function(){}
+// 设置Fee背景以及文字
+Fee.prototype.setFeePic = function (game) {
+    var fee = game.add.image(this.x, this.y, "fee");
+    var text = game.add.text(60, 28, "9/9", { fill: "#fff", fontSize: "18pt" });
+    text.anchor.set(0.5);
+    fee.addChild(text);
+}
 
-module.exports =  Fee;
+module.exports = Fee;
