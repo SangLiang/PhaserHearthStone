@@ -56,8 +56,15 @@ UIManager.prototype.setTurnOverButton = function (game) {
     var button = game.add.image(game.world.width - 150, game.world.centerY - 30, "hero_turn_button");
     button.inputEnabled = true;
     button.events.onInputDown.add(function () {
-        console.log(1);
-        button.loadTexture("enemy_turn_button");
+        if (DataManager.turn == 0) {
+            button.loadTexture("enemy_turn_button");
+            DataManager.turn = 1;
+        } 
+        // else if (DataManager.turn == 1) {
+        //     button.loadTexture("hero_turn_button");
+        //     DataManager.turn = 0;
+        // }
+
     });
 
     return button;

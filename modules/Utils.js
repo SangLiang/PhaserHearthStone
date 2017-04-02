@@ -3,6 +3,7 @@
  */
 
 var Utils = {
+    // 继承
     extend: function (child, parent) {
         var p = parent.prototype;
         var c = child.prototype;
