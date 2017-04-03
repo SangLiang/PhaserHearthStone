@@ -35,3 +35,5 @@ var CardConfig = {
     "cardLength": 15, // 卡组长度
     "cardInitialLength": 3, // 卡组初始化长度
 }
+
+module.exports = CardConfig;

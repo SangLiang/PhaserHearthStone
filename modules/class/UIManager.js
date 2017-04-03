@@ -3,7 +3,6 @@
  */
 
 var BackGround = require("./BackGround");
-var CardGenerator = require("./CardGenerater");
 var HeroHead = require("./HeroHead");
 var EnemyHead = require("./EnemyHead");
 var DataManager = require("./DataManager");
@@ -28,8 +27,8 @@ function UIManager(game) {
 UIManager.prototype.init = function (game) {
     this.backgroundObj = this.setBackGround(game);  // 生成背景图
 
-    var card = new CardGenerator();
-    card.buildCardList(15, 1, 3);
+    // var card = new CardGenerator();
+    // card.buildCardList(15, 1, 3);
 
     this.heroHeadObj = new HeroHead(game, "fighter_hero", 0, 0); // 生成玩家英雄头像
     this.enemyHeadObj = new EnemyHead(game, "fighter_hero", 0, game.world.height - 140); // 生成电脑英雄头像
