@@ -19,7 +19,7 @@ CardGenerator.prototype.buildCardList = function (cardLength, minIndex, maxIndex
     for (var i = 0; i < cardLength; i++) {
         var ramdom = Math.floor(Math.random() * maxIndex) + minIndex;
         cardList.push(ramdom);
-        console.log(cardList);
+        // console.log(cardList);
     }
     return cardList;
 }

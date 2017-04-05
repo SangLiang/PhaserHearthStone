@@ -4,35 +4,83 @@
 
 var CardGenerater = require("./CardGenerater");
 var CardConfig = require("../config/CardConfig");
-// var DataManager = require("./DataManager");
+var DataManager = require("./DataManager");
 
 function HandCard(game, x, y) {
     this.cardObjList = []; // 手牌对象数组
+    this.cardViewList = []; // 手牌视图数组
+    this.cardIDList = [];
     this.x = x || 140;
     this.y = y || 20;
     this.init(game);
 }
 
 HandCard.prototype.init = function (game) {
-    this.buildHandCardObjList(game);
-    this.setHandCardList();
-    console.log(this);
+    this.cardIDList = this.setHandCardList();
+    // this.buildHandCardViewList(game); // 设置卡背
+    this.setRealHandCard(game); // 真实卡面
 }
 
 // 构建手牌数组view
-HandCard.prototype.buildHandCardObjList = function (game) {
+HandCard.prototype.buildHandCardViewList = function (game) {
     for (var i = 0; i < 4; i++) {
-        var card = game.add.image(this.x + i * 65, this.y, "card_back");
+        var card = game.add.image(this.x + i * 70, this.y, "card_back");
         card.scale.set(0.5);
-        this.cardObjList.push(card);
+        this.cardViewList.push(card);
+    }
+}
+
+// 设置卡牌的数据显示
+HandCard.prototype.setRealHandCard = function (game) {
+    var _list = this.cardIDList.splice(0, 4);
+    console.info(_list);
+    console.info(this.cardIDList);
+
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < CardConfig.card_info.length; j++) {
+            if (_list[i] == CardConfig.card_info[j].id) {
+                var card = game.add.image(this.x + i * 75, this.y, CardConfig.card_info[j].name);
+                card.cardInfo = {};
+                card.cardInfo.HP = CardConfig.card_info[j].hp; // 血量
+                card.cardInfo.attack = CardConfig.card_info[j].attack; // 攻击力
+                card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
+                card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
+                card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+                card.scale.set(0.5);
+                this.cardObjList.push(card);
+
+                card.inputEnabled = true;
+                card.events.onInputDown.add(function () {
+                    this.inputEnabled = false; // 禁止玩家不停点击
+                    if(DataManager.heroChoiseCard == null ){
+                        DataManager.heroChoiseCard = this;
+                    }else{
+                        var tween = game.add.tween(DataManager.heroChoiseCard).to({ y: DataManager.heroChoiseCard.y + 20 }, 200, "Linear", true);
+                        DataManager.heroChoiseCard.inputEnabled = true;
+                        tween.start();
+                        DataManager.heroChoiseCard = this;
+                    }
+                    
+                    var tween = game.add.tween(this).to({ y: this.y - 20 }, 200, "Linear", true);
+                    tween.start();
+                    tween.onComplete.add(function(){
+                        console.log(1);
+
+                    });
+                    console.log(this);
+                }, card);
+            }
+        }
     }
 }
 
 // 生成卡牌id数组
-HandCard.prototype.setHandCardList = function(){
+HandCard.prototype.setHandCardList = function () {
     var cardGenerater = new CardGenerater();
-    var cardIDList = cardGenerater.buildCardList(CardConfig.cardLength,1,CardConfig.card_info.length);
-    console.log(cardIDList);
+    var cardIDList = cardGenerater.buildCardList(CardConfig.cardLength, 1, CardConfig.card_info.length);
+    return cardIDList;
+    // console.log(cardIDList);
 }
 
+// 通过id构建真实手牌
 module.exports = HandCard;

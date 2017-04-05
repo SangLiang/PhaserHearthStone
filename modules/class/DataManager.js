@@ -4,7 +4,8 @@
  
 var DataManager = {
 	turn:0, // 0代表自己回合,1代表敌人回合 
-	fee:1 // 初始化费用，和游戏回合相关
+	fee:1, // 初始化费用，和游戏回合相关
+	heroChoiseCard:null // 英雄选择的卡牌
 }
 
 module.exports = DataManager;

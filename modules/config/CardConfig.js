@@ -5,6 +5,7 @@
 var CardConfig = {
     "card_info": [{
         "name": "fishman_baby",
+        "fight": "fishman_baby_fight",
         "cn_name": "鱼人宝宝",
         "fee": 1,
         "attack": 1,
@@ -12,6 +13,7 @@ var CardConfig = {
         "id": 1
     }, {
         "name": "freshwater_crocodile",
+        "fight":"freshwater_crocodile_fight",
         "cn_name": "淡水鳄",
         "fee": 2,
         "attack": 2,
@@ -19,6 +21,7 @@ var CardConfig = {
         "id": 2
     }, {
         "name": "ogre",
+        "fight": "ogre_fight",
         "cn_name": "食人魔法师",
         "fee": 4,
         "attack": 4,
@@ -26,6 +29,7 @@ var CardConfig = {
         "id": 3
     }, {
         "name": "dead_wing",
+        "fight": "dead_wing_fight",
         "cn_name": "死亡之翼",
         "fee": 9,
         "attack": 9,
@@ -33,7 +37,7 @@ var CardConfig = {
         "id": 4
     }],
     "cardLength": 15, // 卡组长度
-    "cardInitialLength": 3, // 卡组初始化长度
+    "cardInitialLength": 4, // 初始化手牌长度
 }
 
 module.exports = CardConfig;
