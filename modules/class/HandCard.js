@@ -47,29 +47,51 @@ HandCard.prototype.setRealHandCard = function (game) {
                 card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
                 card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
                 card.scale.set(0.5);
+
                 this.cardObjList.push(card);
 
                 card.inputEnabled = true;
                 card.events.onInputDown.add(function () {
                     this.inputEnabled = false; // 禁止玩家不停点击
-                    if(DataManager.heroChoiseCard == null ){
+                    if (DataManager.heroChoiseCard == null) {
                         DataManager.heroChoiseCard = this;
-                    }else{
+                    } else {
+                        // 注册动画事件
                         var tween = game.add.tween(DataManager.heroChoiseCard).to({ y: DataManager.heroChoiseCard.y + 20 }, 200, "Linear", true);
                         DataManager.heroChoiseCard.inputEnabled = true;
+                        // 执行动画
                         tween.start();
                         DataManager.heroChoiseCard = this;
                     }
-                    
+
                     var tween = game.add.tween(this).to({ y: this.y - 20 }, 200, "Linear", true);
                     tween.start();
-                    tween.onComplete.add(function(){
+                    tween.onComplete.add(function () {
                         console.log(1);
-
                     });
                     console.log(this);
                 }, card);
             }
+        }
+    }
+}
+
+// 重新对手牌排序
+HandCard.prototype.reListHandCard = function () {
+    var self = this;
+    var _temp = [];
+    if (self.cardObjList.length == 0) { // 没有手牌的情况
+        return;
+    } else {
+        for (var i = 0; i < self.cardObjList.length; i++) {
+            if (self.cardObjList[i].alive == true) { // 清除掉已经销毁了的手牌
+                _temp.push(self.cardObjList[i]);
+            }
+        }
+        self.cardObjList = _temp;
+
+        for (var j = 0; j < self.cardObjList.length; j++) { // 重新对手牌排序
+            self.cardObjList[j].x = self.x + j * 75;
         }
     }
 }
@@ -79,7 +101,6 @@ HandCard.prototype.setHandCardList = function () {
     var cardGenerater = new CardGenerater();
     var cardIDList = cardGenerater.buildCardList(CardConfig.cardLength, 1, CardConfig.card_info.length);
     return cardIDList;
-    // console.log(cardIDList);
 }
 
 // 通过id构建真实手牌

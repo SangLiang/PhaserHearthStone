@@ -13,7 +13,7 @@ var CardConfig = {
         "id": 1
     }, {
         "name": "freshwater_crocodile",
-        "fight":"freshwater_crocodile_fight",
+        "fight": "freshwater_crocodile_fight",
         "cn_name": "淡水鳄",
         "fee": 2,
         "attack": 2,
@@ -35,7 +35,7 @@ var CardConfig = {
         "attack": 9,
         "hp": 9,
         "id": 4
-    }],
+    }],// 卡牌的相关信息
     "cardLength": 15, // 卡组长度
     "cardInitialLength": 4, // 初始化手牌长度
 }
