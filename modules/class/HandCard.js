@@ -18,23 +18,37 @@ function HandCard(game, x, y) {
 HandCard.prototype.init = function (game) {
     this.cardIDList = this.setHandCardList();
     // this.buildHandCardViewList(game); // 设置卡背
-    this.setRealHandCard(game); // 真实卡面
+    // this.setRealHandCard(game); // 真实卡面
 }
 
 // 构建手牌数组view
 HandCard.prototype.buildHandCardViewList = function (game) {
+    // 截取卡组中的前四张
+    var _list = this.cardIDList.splice(0, 4);
+
     for (var i = 0; i < 4; i++) {
-        var card = game.add.image(this.x + i * 70, this.y, "card_back");
-        card.scale.set(0.5);
-        this.cardViewList.push(card);
+        for (var j = 0; j < CardConfig.card_info.length; j++) {
+
+            if (_list[i] == CardConfig.card_info[j].id) {
+                var card = game.add.image(this.x + i * 70, this.y, "card_back");
+
+                // 设置相应的数据
+                card.cardInfo = {};
+                card.cardInfo.HP = CardConfig.card_info[j].hp; // 血量
+                card.cardInfo.attack = CardConfig.card_info[j].attack; // 攻击力
+                card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
+                card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
+                card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+                card.scale.set(0.5);
+                this.cardViewList.push(card);
+            }
+        }
     }
 }
 
 // 设置卡牌的数据显示
 HandCard.prototype.setRealHandCard = function (game) {
     var _list = this.cardIDList.splice(0, 4);
-    console.info(_list);
-    console.info(this.cardIDList);
 
     for (var i = 0; i < 4; i++) {
         for (var j = 0; j < CardConfig.card_info.length; j++) {
@@ -69,7 +83,6 @@ HandCard.prototype.setRealHandCard = function (game) {
                     tween.onComplete.add(function () {
                         console.log(1);
                     });
-                    console.log(this);
                 }, card);
             }
         }

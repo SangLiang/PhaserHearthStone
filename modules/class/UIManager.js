@@ -29,6 +29,7 @@ UIManager.prototype.init = function (game) {
     this.turnOverButton = this.setTurnOverButton(game); // 设置回合结束按钮
 
     DataManager.enemyHandCard = new EnemyHandCard(game); // 设置敌人手牌
+    console.log(DataManager.enemyHandCard);
     DataManager.heroHandCard = new HeroHandCard(game, null, game.world.height - 120); // 设置玩家手牌
 
     this.shotCardButton = this.setShotCardButton(game); // 设置出牌按钮
@@ -72,16 +73,14 @@ UIManager.prototype.setShotCardButton = function (game) {
         if (DataManager.heroChoiseCard) {
             if (DataManager.heroFighers == null) {
                 DataManager.heroFighers = new HeroFighter(game);
-                DataManager.heroFighers.buildFighter(game);
+                DataManager.heroFighers.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
             } else {
-                DataManager.heroFighers.buildFighter(game);
-
+                DataManager.heroFighers.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
             }
-            
+
             DataManager.heroChoiseCard.destroy();
             DataManager.heroHandCard.reListHandCard();
             DataManager.heroChoiseCard = null;
-            console.log(DataManager.heroChoiseCard);
         }
 
     });
