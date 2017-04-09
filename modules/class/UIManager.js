@@ -10,6 +10,7 @@ var HeroHandCard = require("./HeroHandCard");
 var EnemyHandCard = require("./EnemyHandCard");
 var HeroFee = require("./HeroFee");
 var EnemyFee = require("./EnemyFee");
+var AI = require("./AI");
 
 var HeroFighter = require("./HeroFighter");
 
@@ -36,6 +37,8 @@ UIManager.prototype.init = function (game) {
 
     DataManager.heroFee = new HeroFee(game, game.world.width - 110, game.world.centerY - 90); // 英雄费用管理
     DataManager.enemyFee = new EnemyFee(game, game.world.width - 110, game.world.centerY + 42); // 敌人费用管理
+
+    DataManager.AI = new AI(); // 创建AI
 }
 
 // 设置背景
@@ -53,6 +56,8 @@ UIManager.prototype.setTurnOverButton = function (game) {
             button.loadTexture("enemy_turn_button");
             DataManager.turn = 1;
         }
+
+        DataManager.AI.shotCard();
 
     });
 
