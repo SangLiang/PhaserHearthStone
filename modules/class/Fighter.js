@@ -27,12 +27,12 @@ Fighter.prototype.buildFighter = function (game, hp, attack, cnName, picName) {
         fontSize: "12pt"
     }
     // 设置生命值
-    var hp_text = game.add.text(17, 105, hp, _style);
+    var hp_text = game.add.text(75, 105, hp, _style);
     hp_text.anchor.set(0.5);
     hp_text.key = "hp";
 
     // 设置
-    var attack_text = game.add.text(75, 105, attack, _style);
+    var attack_text = game.add.text(17, 105, attack, _style);
     attack_text.anchor.set(0.5);
     attack_text.key = "attack";
 

@@ -27,7 +27,7 @@ UIManager.prototype.init = function (game) {
     DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, 0); // 生成玩家英雄头像
     DataManager.enemyHead = new EnemyHead(game, "fighter_hero", 0, game.world.height - 140); // 生成电脑英雄头像
 
-    this.turnOverButton = this.setTurnOverButton(game); // 设置回合结束按钮
+    DataManager.turnOverButton = this.setTurnOverButton(game); // 设置回合结束按钮
 
     DataManager.enemyHandCard = new EnemyHandCard(game); // 设置敌人手牌
     console.log(DataManager.enemyHandCard);
@@ -56,8 +56,10 @@ UIManager.prototype.setTurnOverButton = function (game) {
             button.loadTexture("enemy_turn_button");
             DataManager.turn = 1;
         }
-
-        DataManager.AI.shotCard();
+        var time = setTimeout(function () {
+            DataManager.AI.shotCard(game);
+            clearTimeout(time);
+        }, 1000);
 
     });
 

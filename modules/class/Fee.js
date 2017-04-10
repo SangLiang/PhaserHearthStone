@@ -19,6 +19,7 @@ Fee.prototype.setFeePic = function (game) {
     var text = game.add.text(60, 28, "9/9", { fill: "#fff", fontSize: "18pt" });
     text.anchor.set(0.5);
     fee.addChild(text);
+    return text;
 }
 
 module.exports = Fee;
