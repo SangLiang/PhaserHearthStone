@@ -56,13 +56,16 @@ UIManager.prototype.setTurnOverButton = function (game) {
             button.loadTexture("enemy_turn_button");
             DataManager.turn = 1;
         }
+        if (DataManager.enemyFighters) {
+            DataManager.enemyFighters.awakeFighter(); // 解除敌人随从睡眠状态
+        }
         var time = setTimeout(function () {
             DataManager.AI.shotCard(game);
+            DataManager.heroFighers.awakeFighter(); // 解除玩家随从睡眠状态
             clearTimeout(time);
         }, 1000);
 
     });
-
     return button;
 }
 

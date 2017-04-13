@@ -12,6 +12,7 @@ var DataManager = {
 	heroHandCard: null, // 英雄手牌
 	heroFee: null, // 英雄的费用
 	heroHead: null, // 英雄头像
+	heroFighterChoise:null, // 战斗随从的选择
 
 	enemyHandCard: null, // 敌人手牌 
 	enemyFee: null, // 敌人的费用

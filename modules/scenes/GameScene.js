@@ -28,7 +28,7 @@ function GameScene(game) {
         game.load.image("ogre", "../../resource/ogre.png");
         game.load.image("ogre_fight", "../../resource/ogre_fight.png");
         game.load.image("shot_card","../../resource/shot_card.png");
-
+        game.load.image("attack_icon","../../resource/attack_icon.png");
         // 单个文件加载完的回调
         game.load.onFileComplete.add(function () {
             loadText.setText("Loading ... " + arguments[0]);
