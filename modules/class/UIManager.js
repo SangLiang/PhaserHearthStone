@@ -64,6 +64,7 @@ UIManager.prototype.setTurnOverButton = function(game) {
 
         var time = setTimeout(function() {
             DataManager.AI.shotCard(game);
+            DataManager.AI.choiseAttackTarget();
             if (DataManager.heroFighers) {
                 DataManager.heroFighers.awakeFighter(); // 解除玩家随从睡眠状态
             }

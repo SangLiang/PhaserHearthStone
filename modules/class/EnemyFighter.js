@@ -27,8 +27,6 @@ EnemyFighter.prototype.choiceFighter = function (fightBg) {
         var _heroFightHP = DataManager.heroFighterChoise.hp - fightBg.attack;
         var _enemyFightHP = fightBg.hp - DataManager.heroFighterChoise.attack;
 
-        console.log(_heroFightHP,_enemyFightHP);
-
         // 更新玩家的随从的hp
         DataManager.heroFighterChoise.hp = _heroFightHP;
         DataManager.heroFighterChoise.alpha = 0.7;

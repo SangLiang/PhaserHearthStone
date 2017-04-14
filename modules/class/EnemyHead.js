@@ -33,7 +33,6 @@ Head.prototype.setPic = function (game) {
             alert("我方的"+DataManager.heroFighterChoise.cnName+"攻击了敌人英雄");
 
             DataManager.heroFighterChoise = null;
-            console.log(123);
         }
 
     }, this);

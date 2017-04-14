@@ -36,5 +36,4 @@ Head.prototype.setHP = function (game) {
 	return HP;
 }
 
-
 module.exports = Head;
