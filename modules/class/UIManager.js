@@ -24,8 +24,8 @@ function UIManager(game) {
 UIManager.prototype.init = function (game) {
     this.backgroundObj = this.setBackGround(game);  // 生成背景图
 
-    DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, 0); // 生成玩家英雄头像
-    DataManager.enemyHead = new EnemyHead(game, "fighter_hero", 0, game.world.height - 140); // 生成电脑英雄头像
+    DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, game.world.height - 140); // 生成玩家英雄头像
+    DataManager.enemyHead = new EnemyHead(game, "fighter_hero", 0, 0); // 生成电脑英雄头像
 
     DataManager.turnOverButton = this.setTurnOverButton(game); // 设置回合结束按钮
 

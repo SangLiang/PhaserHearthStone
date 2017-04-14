@@ -6,10 +6,6 @@
  * @param positionY [number] 初始化的y坐标
  */
 
-/**
- * TODO: 1.事件响应
- */
-
 function Head(game, textureName, positionX, positionY) {
 	this.headObj = null;
 	this.x = positionX;
@@ -32,7 +28,7 @@ Head.prototype.setPic = function (game) {
 
 // 设置血量
 Head.prototype.setHP = function (game) {
-	var HPbg = game.add.image(10, 150, "hp_background");
+	var HPbg = game.add.image(10, 170, "hp_background");
 	var HP = game.add.text(HPbg.width / 2, HPbg.height / 2 + 5, "30", { fill: "#fff", fontSize: "24pt" });
 	HP.anchor.set(0.5);
 	HPbg.addChild(HP);

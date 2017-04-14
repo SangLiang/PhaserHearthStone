@@ -47,6 +47,9 @@ EnemyFighter.prototype.choiceFighter = function (fightBg) {
             fightBg.destroy();
             DataManager.enemyFighters.reListObjs();
         }
+
+        DataManager.heroFighterChoise = null;
+        
     }
 }
 
