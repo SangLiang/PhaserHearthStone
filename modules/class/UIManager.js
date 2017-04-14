@@ -21,8 +21,8 @@ function UIManager(game) {
     this.init(game);
 }
 
-UIManager.prototype.init = function (game) {
-    this.backgroundObj = this.setBackGround(game);  // 生成背景图
+UIManager.prototype.init = function(game) {
+    this.backgroundObj = this.setBackGround(game); // 生成背景图
 
     DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, game.world.height - 140); // 生成玩家英雄头像
     DataManager.enemyHead = new EnemyHead(game, "fighter_hero", 0, 0); // 生成电脑英雄头像
@@ -35,23 +35,23 @@ UIManager.prototype.init = function (game) {
 
     this.shotCardButton = this.setShotCardButton(game); // 设置出牌按钮
 
-    DataManager.heroFee = new HeroFee(game, game.world.width - 110, game.world.centerY - 90); // 英雄费用管理
-    DataManager.enemyFee = new EnemyFee(game, game.world.width - 110, game.world.centerY + 42); // 敌人费用管理
+    DataManager.heroFee = new HeroFee(game, game.world.width - 110, game.world.centerY + 42); // 英雄费用管理
+    DataManager.enemyFee = new EnemyFee(game, game.world.width - 110, game.world.centerY - 90); // 敌人费用管理
 
     DataManager.AI = new AI(); // 创建AI
 }
 
 // 设置背景
-UIManager.prototype.setBackGround = function (game) {
+UIManager.prototype.setBackGround = function(game) {
     var background = new BackGround(game);
     return background;
 }
 
 // 回合结束
-UIManager.prototype.setTurnOverButton = function (game) {
+UIManager.prototype.setTurnOverButton = function(game) {
     var button = game.add.image(game.world.width - 150, game.world.centerY - 30, "hero_turn_button");
     button.inputEnabled = true;
-    button.events.onInputDown.add(function () {
+    button.events.onInputDown.add(function() {
         if (DataManager.turn == 0) {
             button.loadTexture("enemy_turn_button");
             DataManager.turn = 1;
@@ -59,9 +59,19 @@ UIManager.prototype.setTurnOverButton = function (game) {
         if (DataManager.enemyFighters) {
             DataManager.enemyFighters.awakeFighter(); // 解除敌人随从睡眠状态
         }
-        var time = setTimeout(function () {
+
+        DataManager.enemyFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
+
+        var time = setTimeout(function() {
             DataManager.AI.shotCard(game);
-            DataManager.heroFighers.awakeFighter(); // 解除玩家随从睡眠状态
+            if (DataManager.heroFighers) {
+                DataManager.heroFighers.awakeFighter(); // 解除玩家随从睡眠状态
+            }
+
+            // 更新玩家费用的情况
+            DataManager.fee += 1;
+            DataManager.heroCurrentFee = DataManager.fee;
+            DataManager.heroFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
             clearTimeout(time);
         }, 1000);
 
@@ -70,17 +80,27 @@ UIManager.prototype.setTurnOverButton = function (game) {
 }
 
 // 出牌按钮
-UIManager.prototype.setShotCardButton = function (game) {
+UIManager.prototype.setShotCardButton = function(game) {
     var shot = game.add.image(80, game.world.centerY - 10, "shot_card");
     shot.anchor.set(0.5);
     shot.inputEnabled = true;
-    shot.events.onInputDown.add(function () {
+    shot.events.onInputDown.add(function() {
         if (DataManager.turn != 0) {
             return;
         }
 
         console.log("我出牌了");
         if (DataManager.heroChoiseCard) {
+
+            // 检查选择卡牌的费用是否超出当前可用费用
+            if (DataManager.heroCurrentFee < DataManager.heroChoiseCard.cardInfo.fee) {
+                alert("你的费用不足，无法使用这张卡牌");
+                return;
+            }
+
+            DataManager.heroCurrentFee = DataManager.heroCurrentFee - DataManager.heroChoiseCard.cardInfo.fee;
+            DataManager.heroFee.feeObj.setText(DataManager.heroCurrentFee + "/" + DataManager.fee);
+
             if (DataManager.heroFighers == null) {
                 DataManager.heroFighers = new HeroFighter(game);
                 DataManager.heroFighers.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);

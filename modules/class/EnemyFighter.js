@@ -27,6 +27,8 @@ EnemyFighter.prototype.choiceFighter = function (fightBg) {
         var _heroFightHP = DataManager.heroFighterChoise.hp - fightBg.attack;
         var _enemyFightHP = fightBg.hp - DataManager.heroFighterChoise.attack;
 
+        console.log(_heroFightHP,_enemyFightHP);
+
         // 更新玩家的随从的hp
         DataManager.heroFighterChoise.hp = _heroFightHP;
         DataManager.heroFighterChoise.alpha = 0.7;
@@ -35,7 +37,7 @@ EnemyFighter.prototype.choiceFighter = function (fightBg) {
         DataManager.heroFighterChoise.children[1].setText(_heroFightHP);
 
         // 更新敌人的玩家的hp
-        fightBg.hp = _heroFightHP;
+        fightBg.hp = _enemyFightHP;
         fightBg.children[1].setText(_enemyFightHP);
 
         if (_heroFightHP <= 0) {

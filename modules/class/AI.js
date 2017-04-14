@@ -15,6 +15,8 @@ AI.prototype.shotCard = function (game) {
 
     if(!this.enemyChoise){
         // 没有合适的卡牌
+        DataManager.turnOverButton.loadTexture("hero_turn_button");
+        alert("敌人选择不出牌,不知道有什么阴谋诡计");
         return;
     }
 
