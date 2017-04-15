@@ -40,7 +40,7 @@ EnemyFighter.prototype.choiceFighter = function (fightBg) {
 
         if (_heroFightHP <= 0) {
             DataManager.heroFighterChoise.destroy();
-            DataManager.heroFighers.reListObjs();
+            DataManager.heroFighters.reListObjs();
         }
 
         if (_enemyFightHP <= 0) {

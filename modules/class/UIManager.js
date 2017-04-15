@@ -21,7 +21,7 @@ function UIManager(game) {
     this.init(game);
 }
 
-UIManager.prototype.init = function(game) {
+UIManager.prototype.init = function (game) {
     this.backgroundObj = this.setBackGround(game); // 生成背景图
 
     DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, game.world.height - 140); // 生成玩家英雄头像
@@ -30,7 +30,6 @@ UIManager.prototype.init = function(game) {
     DataManager.turnOverButton = this.setTurnOverButton(game); // 设置回合结束按钮
 
     DataManager.enemyHandCard = new EnemyHandCard(game); // 设置敌人手牌
-    console.log(DataManager.enemyHandCard);
     DataManager.heroHandCard = new HeroHandCard(game, null, game.world.height - 120); // 设置玩家手牌
 
     this.shotCardButton = this.setShotCardButton(game); // 设置出牌按钮
@@ -42,16 +41,16 @@ UIManager.prototype.init = function(game) {
 }
 
 // 设置背景
-UIManager.prototype.setBackGround = function(game) {
+UIManager.prototype.setBackGround = function (game) {
     var background = new BackGround(game);
     return background;
 }
 
 // 回合结束
-UIManager.prototype.setTurnOverButton = function(game) {
+UIManager.prototype.setTurnOverButton = function (game) {
     var button = game.add.image(game.world.width - 150, game.world.centerY - 30, "hero_turn_button");
     button.inputEnabled = true;
-    button.events.onInputDown.add(function() {
+    button.events.onInputDown.add(function () {
         if (DataManager.turn == 0) {
             button.loadTexture("enemy_turn_button");
             DataManager.turn = 1;
@@ -61,18 +60,22 @@ UIManager.prototype.setTurnOverButton = function(game) {
         }
 
         DataManager.enemyFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
-
-        var time = setTimeout(function() {
+        DataManager.enemyHandCard.addCard(game); // 敌人摸牌
+        var time = setTimeout(function () {
             DataManager.AI.shotCard(game);
-            DataManager.AI.choiseAttackTarget();
-            if (DataManager.heroFighers) {
-                DataManager.heroFighers.awakeFighter(); // 解除玩家随从睡眠状态
+            DataManager.AI.choiseAttackTarget(); // 电脑AI展开攻击
+            if (DataManager.heroFighters) {
+                DataManager.heroFighters.awakeFighter(); // 解除玩家随从睡眠状态
             }
 
             // 更新玩家费用的情况
-            DataManager.fee += 1;
+            if (DataManager.fee < 9) {
+                DataManager.fee += 1;
+            }
+
             DataManager.heroCurrentFee = DataManager.fee;
             DataManager.heroFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
+            DataManager.heroHandCard.addCard(game); // 玩家摸牌
             clearTimeout(time);
         }, 1000);
 
@@ -81,16 +84,15 @@ UIManager.prototype.setTurnOverButton = function(game) {
 }
 
 // 出牌按钮
-UIManager.prototype.setShotCardButton = function(game) {
+UIManager.prototype.setShotCardButton = function (game) {
     var shot = game.add.image(80, game.world.centerY - 10, "shot_card");
     shot.anchor.set(0.5);
     shot.inputEnabled = true;
-    shot.events.onInputDown.add(function() {
+    shot.events.onInputDown.add(function () {
         if (DataManager.turn != 0) {
             return;
         }
 
-        console.log("我出牌了");
         if (DataManager.heroChoiseCard) {
 
             // 检查选择卡牌的费用是否超出当前可用费用
@@ -102,11 +104,11 @@ UIManager.prototype.setShotCardButton = function(game) {
             DataManager.heroCurrentFee = DataManager.heroCurrentFee - DataManager.heroChoiseCard.cardInfo.fee;
             DataManager.heroFee.feeObj.setText(DataManager.heroCurrentFee + "/" + DataManager.fee);
 
-            if (DataManager.heroFighers == null) {
-                DataManager.heroFighers = new HeroFighter(game);
-                DataManager.heroFighers.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
+            if (DataManager.heroFighters == null) {
+                DataManager.heroFighters = new HeroFighter(game);
+                DataManager.heroFighters.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
             } else {
-                DataManager.heroFighers.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
+                DataManager.heroFighters.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
             }
 
             DataManager.heroChoiseCard.destroy();

@@ -8,7 +8,7 @@ var DataManager = {
 	AI: null,
 
 	heroChoiseCard: null, // 英雄选择的卡牌
-	heroFighers: null, // 英雄随从
+	heroFighters: null, // 英雄随从
 	heroHandCard: null, // 英雄手牌
 	heroFee: null, // 英雄的费用
 	heroHead: null, // 英雄头像

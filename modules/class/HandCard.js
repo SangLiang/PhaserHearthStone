@@ -81,10 +81,48 @@ HandCard.prototype.setRealHandCard = function (game) {
                     var tween = game.add.tween(this).to({ y: this.y - 20 }, 200, "Linear", true);
                     tween.start();
                     tween.onComplete.add(function () {
-                        console.log(1);
                     });
                 }, card);
             }
+        }
+    }
+}
+
+// 回合开始时的补牌逻辑
+HandCard.prototype.addCard = function (game) {
+    var _cardList = this.cardIDList.splice(0, 1);
+    for (var j = 0; j < CardConfig.card_info.length; j++) {
+        if (_cardList[0] == CardConfig.card_info[j].id) {
+            var card = game.add.image(this.x + (this.cardObjList.length) * 75, this.y, CardConfig.card_info[j].name);
+            card.cardInfo = {};
+            card.cardInfo.HP = CardConfig.card_info[j].hp; // 血量
+            card.cardInfo.attack = CardConfig.card_info[j].attack; // 攻击力
+            card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
+            card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
+            card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+            card.scale.set(0.5);
+
+            this.cardObjList.push(card);
+
+            card.inputEnabled = true;
+            card.events.onInputDown.add(function () {
+                this.inputEnabled = false; // 禁止玩家不停点击
+                if (DataManager.heroChoiseCard == null) {
+                    DataManager.heroChoiseCard = this;
+                } else {
+                    // 注册动画事件
+                    var tween = game.add.tween(DataManager.heroChoiseCard).to({ y: DataManager.heroChoiseCard.y + 20 }, 200, "Linear", true);
+                    DataManager.heroChoiseCard.inputEnabled = true;
+                    // 执行动画
+                    tween.start();
+                    DataManager.heroChoiseCard = this;
+                }
+
+                var tween = game.add.tween(this).to({ y: this.y - 20 }, 200, "Linear", true);
+                tween.start();
+                tween.onComplete.add(function () {
+                });
+            }, card);
         }
     }
 }
