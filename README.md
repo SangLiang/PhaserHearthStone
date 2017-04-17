@@ -24,6 +24,6 @@ gulp default
 
 ### 2.相关教程
 
-欢迎访问[完整开发教程](https://sangliang.github.io/Timing-House/)来学习Phaser游戏的开发
+欢迎访问[完整开发教程](https://sangliang.github.io/Timing-House/2017/04/15/%E4%BD%BF%E7%94%A8Phaser%E6%9D%A5%E5%BC%80%E5%8F%91%E6%88%91%E7%9A%84%E7%82%89%E7%9F%B3%E4%BC%A0%E8%AF%B4(%E4%B8%80)/)来学习Phaser游戏的开发
 
 ![image](https://raw.githubusercontent.com/SangLiang/Blog/gh-pages/pics/201609/33.gif)
