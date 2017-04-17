@@ -63,7 +63,7 @@ UIManager.prototype.setTurnOverButton = function (game) {
         DataManager.enemyHandCard.addCard(game); // 敌人摸牌
         var time = setTimeout(function () {
             DataManager.AI.shotCard(game);
-            DataManager.AI.choiseAttackTarget(); // 电脑AI展开攻击
+            DataManager.AI.choiseAttackTarget(game); // 电脑AI展开攻击
             if (DataManager.heroFighters) {
                 DataManager.heroFighters.awakeFighter(); // 解除玩家随从睡眠状态
             }

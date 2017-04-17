@@ -26,7 +26,7 @@ AI.prototype.shotCard = function (game) {
             alert("敌人选择不出牌,不知道有什么阴谋诡计");
             return;
         }
-    }catch(e){
+    } catch (e) {
 
     }
 
@@ -63,7 +63,7 @@ AI.prototype.choiseCard = function () {
 }
 
 // 选择要攻击的目标
-AI.prototype.choiseAttackTarget = function () {
+AI.prototype.choiseAttackTarget = function (game) {
     // 敌人没有随从
     if (!DataManager.enemyFighters || DataManager.enemyFighters.fightObj.length == 0) {
         return;
@@ -78,6 +78,13 @@ AI.prototype.choiseAttackTarget = function () {
                 DataManager.enemyFighters.fightObj[i].sleep = true;
                 DataManager.enemyFighters.fightObj[i].alpha = 0.7;
                 DataManager.heroHead.HPObj.setText(parseInt(DataManager.heroHead.HPObj.text) - DataManager.enemyFighters.fightObj[i].attack);
+
+                if (parseInt(DataManager.heroHead.HPObj.text) <= 0) {
+                    DataManager.result = 0;
+                    alert("敌人获取了胜利，玩家阵亡");
+                    game.state.start("ResultScene");
+                    return;
+                }
             }
         }
     } else {
@@ -108,6 +115,14 @@ AI.prototype.choiseAttackTarget = function () {
                     DataManager.enemyFighters.fightObj[i].sleep = true;
                     DataManager.enemyFighters.fightObj[i].alpha = 0.7;
                     DataManager.heroHead.HPObj.setText(parseInt(DataManager.heroHead.HPObj.text) - DataManager.enemyFighters.fightObj[i].attack);
+
+                    if (parseInt(DataManager.heroHead.HPObj.text) <= 0) {
+                        DataManager.result = 0;
+                        alert("敌人获取了胜利，玩家阵亡");
+                        game.state.start("ResultScene");
+                        return;
+                    }
+
                 } else {
                     // AI场攻小于玩家场攻则攻击随从
                     alert("敌方的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了我方的" + DataManager.heroFighters.fightObj[0].cnName);

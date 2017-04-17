@@ -12,7 +12,7 @@ function EnemyHead(game, textureName, positionX, positionY) {
 
 
 // 设置敌人头像
-// 重写setPic
+// @override重写setPic
 Head.prototype.setPic = function (game) {
     var pic = game.add.image(0, 0, this.textureName);
 
@@ -30,9 +30,15 @@ Head.prototype.setPic = function (game) {
             DataManager.heroFighterChoise.sleep = true;
             DataManager.heroFighterChoise.children[2].alpha = 0;
 
-            alert("我方的"+DataManager.heroFighterChoise.cnName+"攻击了敌人英雄");
+            alert("我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人英雄");
 
             DataManager.heroFighterChoise = null;
+
+            if (parseInt(this.HPObj.text) <= 0) {
+                alert("玩家获取胜利，敌人阵亡");
+                DataManager.result = 1;
+                game.state.start("ResultScene");
+            }
         }
 
     }, this);
