@@ -2,12 +2,7 @@
  * 卡组生成器
  */
 
-function CardGenerator() {
-
-}
-CardGenerator.prototype.init = function () {
-
-}
+function CardGenerator() { }
 
 // 卡组生成器
 // @param cardLength [number] 卡组长度
@@ -19,7 +14,6 @@ CardGenerator.prototype.buildCardList = function (cardLength, minIndex, maxIndex
     for (var i = 0; i < cardLength; i++) {
         var ramdom = Math.floor(Math.random() * maxIndex) + minIndex;
         cardList.push(ramdom);
-        // console.log(cardList);
     }
     return cardList;
 }

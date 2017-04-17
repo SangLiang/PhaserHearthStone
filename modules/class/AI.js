@@ -20,6 +20,16 @@ AI.prototype.shotCard = function (game) {
         return;
     }
 
+    try {
+        if (DataManager.enemyFighters.fightObj.length >= 5) {
+            DataManager.turnOverButton.loadTexture("hero_turn_button");
+            alert("敌人选择不出牌,不知道有什么阴谋诡计");
+            return;
+        }
+    }catch(e){
+
+    }
+
     if (DataManager.enemyFighters == null) {
         DataManager.enemyFighters = new EnemyFighter(game);
         DataManager.enemyFighters.buildFighter(game, this.enemyChoise.cardInfo.HP, this.enemyChoise.cardInfo.attack, this.enemyChoise.cardInfo.cnName, this.enemyChoise.cardInfo.fight);
@@ -58,7 +68,7 @@ AI.prototype.choiseAttackTarget = function () {
     if (!DataManager.enemyFighters || DataManager.enemyFighters.fightObj.length == 0) {
         return;
     }
-    
+
     if (DataManager.heroFighters == null) { // 判断玩家的随从是否存在
         for (var i = 0; i < DataManager.enemyFighters.fightObj.length; i++) {
             if (DataManager.enemyFighters.fightObj[i].sleep == false) {
@@ -85,7 +95,7 @@ AI.prototype.choiseAttackTarget = function () {
             _heroFightersAttack += DataManager.heroFighters.fightObj[k].attack;
         }
 
-        console.log(_heroFightersAttack,_enemyFightersAttack);
+        console.log(_heroFightersAttack, _enemyFightersAttack);
 
         var _destroyList = [];
         for (var i = 0; i < DataManager.enemyFighters.fightObj.length; i++) {

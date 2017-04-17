@@ -91,6 +91,12 @@ HandCard.prototype.setRealHandCard = function (game) {
 // 回合开始时的补牌逻辑
 HandCard.prototype.addCard = function (game) {
     var _cardList = this.cardIDList.splice(0, 1);
+
+    if (this.cardObjList.length >= 8) {
+        alert("你的手牌已达到上限，当前到的卡牌被销毁");
+        return;
+    }
+
     for (var j = 0; j < CardConfig.card_info.length; j++) {
         if (_cardList[0] == CardConfig.card_info[j].id) {
             var card = game.add.image(this.x + (this.cardObjList.length) * 75, this.y, CardConfig.card_info[j].name);

@@ -93,6 +93,15 @@ UIManager.prototype.setShotCardButton = function (game) {
             return;
         }
 
+        // 控制玩家场上的随从
+        try {
+            if (DataManager.heroFighters.fightObj.length >= 5) {
+                alert("您场上的随从已经到达了上限");
+                return;
+            }
+        } catch (e) {
+        }
+
         if (DataManager.heroChoiseCard) {
 
             // 检查选择卡牌的费用是否超出当前可用费用

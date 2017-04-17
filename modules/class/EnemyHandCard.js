@@ -42,6 +42,12 @@ EnemyHandCard.prototype.reListHandCard = function () {
 // 重写回合开始时的补牌逻辑
 EnemyHandCard.prototype.addCard = function (game) {
     var _cardList = this.cardIDList.splice(0, 1);
+
+    if (this.cardViewList.length >= 8) {
+        alert("敌人已达到上限，当前到的卡牌被销毁");
+        return;
+    }
+
     console.log(_cardList);
     for (var j = 0; j < CardConfig.card_info.length; j++) {
 
