@@ -35,7 +35,23 @@ var CardConfig = {
         "attack": 9,
         "hp": 9,
         "id": 4
-    }],// 卡牌的相关信息
+    },{
+        "name": "rose",
+        "fight": "rose_fight",
+        "cn_name": "拉格纳罗斯",
+        "fee": 8,
+        "attack": 8,
+        "hp": 8,
+        "id": 5
+    },{
+        "name": "velociraptor",
+        "fight": "velociraptor_fight",
+        "cn_name": "超级迅猛龙",
+        "fee": 4,
+        "attack": 4,
+        "hp": 5,
+        "id": 6
+    }], // 卡牌的相关信息
     "cardLength": 15, // 卡组长度
     "cardInitialLength": 4, // 初始化手牌长度
 }
