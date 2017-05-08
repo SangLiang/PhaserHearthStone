@@ -102,8 +102,6 @@ AI.prototype.choiseAttackTarget = function (game) {
             _heroFightersAttack += DataManager.heroFighters.fightObj[k].attack;
         }
 
-        console.log(_heroFightersAttack, _enemyFightersAttack);
-
         var _destroyList = [];
         for (var i = 0; i < DataManager.enemyFighters.fightObj.length; i++) {
             if (DataManager.enemyFighters.fightObj[i].sleep == false) {
