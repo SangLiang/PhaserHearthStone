@@ -91,6 +91,7 @@ HandCard.prototype.setRealHandCard = function (game) {
 // 回合开始时的补牌逻辑
 HandCard.prototype.addCard = function (game) {
     var _cardList = this.cardIDList.splice(0, 1);
+    console.log(this.cardIDList);
 
     if (this.cardObjList.length >= 8) {
         alert("你的手牌已达到上限，当前到的卡牌被销毁");
@@ -153,7 +154,10 @@ HandCard.prototype.reListHandCard = function () {
     }
 }
 
-// 生成卡牌id数组
+/**
+ *  生成卡牌id数组
+ * @return {array} 卡组的ad数组
+ */
 HandCard.prototype.setHandCardList = function () {
     var cardGenerater = new CardGenerater();
     var cardIDList = cardGenerater.buildCardList(CardConfig.cardLength, 1, CardConfig.card_info.length);

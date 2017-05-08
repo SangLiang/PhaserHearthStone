@@ -21,36 +21,46 @@ function UIManager(game) {
     this.init(game);
 }
 
-UIManager.prototype.init = function (game) {
-    this.backgroundObj = this.setBackGround(game); // 生成背景图
+UIManager.prototype.init = function(game) {
+    // 生成背景图
+    this.backgroundObj = this.setBackGround(game);
+    // 生成玩家英雄头像
+    DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, game.world.height - 140);
 
-    DataManager.heroHead = new HeroHead(game, "fighter_hero", 0, game.world.height - 140); // 生成玩家英雄头像
-    DataManager.enemyHead = new EnemyHead(game, "fighter_hero", 0, 0); // 生成电脑英雄头像
+    // 生成电脑英雄头像
+    DataManager.enemyHead = new EnemyHead(game, "fighter_hero", 0, 0);
 
-    DataManager.turnOverButton = this.setTurnOverButton(game); // 设置回合结束按钮
+    // 设置回合结束按钮
+    DataManager.turnOverButton = this.setTurnOverButton(game);
+    // 设置敌人手牌
+    DataManager.enemyHandCard = new EnemyHandCard(game);
 
-    DataManager.enemyHandCard = new EnemyHandCard(game); // 设置敌人手牌
-    DataManager.heroHandCard = new HeroHandCard(game, null, game.world.height - 120); // 设置玩家手牌
+    // 设置玩家手牌 
+    DataManager.heroHandCard = new HeroHandCard(game, null, game.world.height - 120);
 
     this.shotCardButton = this.setShotCardButton(game); // 设置出牌按钮
 
-    DataManager.heroFee = new HeroFee(game, game.world.width - 110, game.world.centerY + 42); // 英雄费用管理
-    DataManager.enemyFee = new EnemyFee(game, game.world.width - 110, game.world.centerY - 90); // 敌人费用管理
+    // 英雄费用管理
+    DataManager.heroFee = new HeroFee(game, game.world.width - 110, game.world.centerY + 42); 
+    
+    // 敌人费用管理
+    DataManager.enemyFee = new EnemyFee(game, game.world.width - 110, game.world.centerY - 90); 
 
-    DataManager.AI = new AI(); // 创建AI
+    // 创建AI
+    DataManager.AI = new AI(); 
 }
 
 // 设置背景
-UIManager.prototype.setBackGround = function (game) {
+UIManager.prototype.setBackGround = function(game) {
     var background = new BackGround(game);
     return background;
 }
 
 // 回合结束
-UIManager.prototype.setTurnOverButton = function (game) {
+UIManager.prototype.setTurnOverButton = function(game) {
     var button = game.add.image(game.world.width - 150, game.world.centerY - 30, "hero_turn_button");
     button.inputEnabled = true;
-    button.events.onInputDown.add(function () {
+    button.events.onInputDown.add(function() {
         if (DataManager.turn == 0) {
             button.loadTexture("enemy_turn_button");
             DataManager.turn = 1;
@@ -61,7 +71,7 @@ UIManager.prototype.setTurnOverButton = function (game) {
 
         DataManager.enemyFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
         DataManager.enemyHandCard.addCard(game); // 敌人摸牌
-        var time = setTimeout(function () {
+        var time = setTimeout(function() {
             DataManager.AI.shotCard(game);
             DataManager.AI.choiseAttackTarget(game); // 电脑AI展开攻击
             if (DataManager.heroFighters) {
@@ -84,11 +94,11 @@ UIManager.prototype.setTurnOverButton = function (game) {
 }
 
 // 出牌按钮
-UIManager.prototype.setShotCardButton = function (game) {
+UIManager.prototype.setShotCardButton = function(game) {
     var shot = game.add.image(80, game.world.centerY - 10, "shot_card");
     shot.anchor.set(0.5);
     shot.inputEnabled = true;
-    shot.events.onInputDown.add(function () {
+    shot.events.onInputDown.add(function() {
         if (DataManager.turn != 0) {
             return;
         }
@@ -99,8 +109,7 @@ UIManager.prototype.setShotCardButton = function (game) {
                 alert("您场上的随从已经到达了上限");
                 return;
             }
-        } catch (e) {
-        }
+        } catch (e) {}
 
         if (DataManager.heroChoiseCard) {
 
