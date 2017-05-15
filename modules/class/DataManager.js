@@ -21,6 +21,7 @@ var DataManager = {
 	enemyFighters: null, // 敌人战场的随从
 	enemyCurrentFee: 1, // 敌人当前费用
 
+	remainCard:null,
 	turnOverButton: null, // 回合结束的按钮
 	result:0 // 0 代表玩家失败，1代表玩家胜利
 }

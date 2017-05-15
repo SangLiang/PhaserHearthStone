@@ -11,6 +11,7 @@ var EnemyHandCard = require("./EnemyHandCard");
 var HeroFee = require("./HeroFee");
 var EnemyFee = require("./EnemyFee");
 var AI = require("./AI");
+var RemainCard = require("./RemainCard");
 
 var HeroFighter = require("./HeroFighter");
 
@@ -48,6 +49,9 @@ UIManager.prototype.init = function(game) {
 
     // 创建AI
     DataManager.AI = new AI(); 
+
+    // 剩余的卡牌提示
+    DataManager.remainCard = new RemainCard(game); 
 }
 
 // 设置背景

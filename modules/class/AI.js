@@ -158,5 +158,4 @@ AI.prototype.choiseAttackTarget = function (game) {
     }
 }
 
-
 module.exports = AI;

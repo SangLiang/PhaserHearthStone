@@ -48,7 +48,6 @@ EnemyHandCard.prototype.addCard = function (game) {
         return;
     }
 
-    console.log(_cardList);
     for (var j = 0; j < CardConfig.card_info.length; j++) {
 
         if (_cardList[0] == CardConfig.card_info[j].id) {

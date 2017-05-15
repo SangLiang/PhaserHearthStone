@@ -10,7 +10,6 @@ function EnemyHead(game, textureName, positionX, positionY) {
     Head.apply(this, arguments);
 }
 
-
 // 设置敌人头像
 // @override重写setPic
 Head.prototype.setPic = function (game) {
