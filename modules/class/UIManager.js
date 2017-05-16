@@ -52,6 +52,7 @@ UIManager.prototype.init = function(game) {
 
     // 剩余的卡牌提示
     DataManager.remainCard = new RemainCard(game); 
+    console.log(DataManager.remainCard);
 }
 
 // 设置背景
@@ -75,6 +76,7 @@ UIManager.prototype.setTurnOverButton = function(game) {
 
         DataManager.enemyFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
         DataManager.enemyHandCard.addCard(game); // 敌人摸牌
+        DataManager.remainCard.refresh();
         var time = setTimeout(function() {
             DataManager.AI.shotCard(game);
             DataManager.AI.choiseAttackTarget(game); // 电脑AI展开攻击
@@ -90,6 +92,8 @@ UIManager.prototype.setTurnOverButton = function(game) {
             DataManager.heroCurrentFee = DataManager.fee;
             DataManager.heroFee.feeObj.setText(DataManager.fee + "/" + DataManager.fee);
             DataManager.heroHandCard.addCard(game); // 玩家摸牌
+            DataManager.remainCard.refresh();
+
             clearTimeout(time);
         }, 1000);
 
