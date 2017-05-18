@@ -52,7 +52,7 @@ var CardConfig = {
         "hp": 5,
         "id": 6
     }], // 卡牌的相关信息
-    "cardLength": 15, // 卡组长度
+    "cardLength": 30, // 卡组长度
     "cardInitialLength": 4, // 初始化手牌长度
 }
 

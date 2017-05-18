@@ -13,6 +13,7 @@ gulp.task('webserver', function () {
 		.pipe(webserver({
 			livereload: true,
 			directoryListing: true,
+			host:"0.0.0.0",
 			open: 'http://127.0.0.1:8000/index.html',
 		}));
 });

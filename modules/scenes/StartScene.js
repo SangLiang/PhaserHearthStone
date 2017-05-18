@@ -3,10 +3,12 @@
  */
 
 function StartScene(game) {
-    this.preload = function () {
-    }
 
     this.create = function () {
+        console.log(Phaser.ScaleManager.SHOW_ALL);
+        // 缩放模式
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
         var style = {
             fill: "#000",
             fontSize: "32pt"
@@ -21,7 +23,7 @@ function StartScene(game) {
 
         startButton.inputEnabled = true;
         startButton.events.onInputDown.add(function () {
-            game.state.start("GameScene");
+            game.state.start("CardChoiseScene");
         },this);
     }
 }
