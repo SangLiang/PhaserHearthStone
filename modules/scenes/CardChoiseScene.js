@@ -42,7 +42,6 @@ function CardChoiseScene(game) {
         game.load.onLoadComplete.add(function () {
             loadText.destroy();
         });
-
     }
 
     this.create = function () {
