@@ -1,6 +1,8 @@
 /**
  * 选择游戏卡组场景
  */
+var CardConfig = require("../config/CardConfig");
+var DataManager = require("../class/DataManager");
 
 function CardChoiseScene(game) {
      this.preload = function () {
@@ -19,7 +21,9 @@ function CardChoiseScene(game) {
         game.load.image("attack_icon","../../resource/attack_icon.png");
         game.load.image("shot_card","../../resource/shot_card.png");
         game.load.image("fighter_hero", "../../resource/fighter_hero.png");
-        
+        game.load.image("choiseScene_bg","../../resource/choiseScene_bg.jpg");
+        game.load.image("confirm_btn","../../resource/confirm_btn.png");
+
         game.load.image("dead_wing", "../../resource/dead_wing.png");
         game.load.image("dead_wing_fight", "../../resource/dead_wing_fight.png");
         game.load.image("fishman_baby", "../../resource/fishman_baby.png");
@@ -50,14 +54,57 @@ function CardChoiseScene(game) {
             fontSize: "32pt"
         }
 
-        var startButton = game.add.text(game.world.centerX, game.world.centerY + 70, "这是选择卡组的场景", { fill: "#333", fontSize: "24pt" });
+        var bg = game.add.image(0,0,"choiseScene_bg");
 
-        startButton.anchor.set(0.5);
+        // 确定按钮，点击进入下一个场景
+        var confirmBtn = game.add.image(670,550,"confirm_btn");
 
-        startButton.inputEnabled = true;
-        startButton.events.onInputDown.add(function () {
+        confirmBtn.anchor.set(0.5);
+
+        confirmBtn.inputEnabled = true;
+        confirmBtn.events.onInputDown.add(function () {
             game.state.start("GameScene");
         },this);
+
+        // 生成所有的待选卡片列表
+        this.buildCommonCard(CardConfig);
+
+    }
+    
+    // 待选卡片
+    this.buildCommonCard = function(CardConfig){
+        var self = this;
+
+        for(var i = 0; i< CardConfig.card_info.length;i++){
+            var image = game.add.image(50+i*85,50,CardConfig.card_info[i].name);
+            image.scale.set(0.5);
+            image.id = CardConfig.card_info[i].id;
+            image.name = CardConfig.card_info[i].name;
+            image.inputEnabled = true;
+
+            image.events.onInputDown.add(function(image){
+                self.addChoiseCard(image);
+            });
+        }
+    }
+
+    // 添加选择的卡牌
+    this.addChoiseCard = function(image){
+        if(DataManager.heroHandCardIDList.length == 0){
+            DataManager.heroHandCardIDList.push(image);
+        }else{
+            for(var i = 0; i<DataManager.heroHandCardIDList.length; i++){
+                if(DataManager.heroHandCardIDList[i].id == image.id){
+                    return;
+                }
+            }
+            DataManager.heroHandCardIDList.push(image);
+        }
+
+        for(var j = 0; j < DataManager.heroHandCardIDList.length; j++){
+            var image = game.add.image(40 +j*108,260,DataManager.heroHandCardIDList[j].name);
+            image.scale.set(0.7);
+        }
     }
 }
 
