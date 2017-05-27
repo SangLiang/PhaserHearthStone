@@ -20,7 +20,7 @@ utils.extend(EnemyHandCard, HandCarnd);
 EnemyHandCard.prototype.reListHandCard = function () {
     var self = this;
     var _temp = [];
-    console.log(self.cardViewList);
+    // console.log(self.cardViewList);
 
     if (self.cardViewList.length == 0) { // 没有手牌的情况
         return;

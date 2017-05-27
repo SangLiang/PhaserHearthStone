@@ -55,7 +55,6 @@ function CardChoiseScene(game) {
         }
 
         this.choisedCardList = [];
-        console.log(this);    
         var bg = game.add.image(0,0,"choiseScene_bg");
 
         // 确定按钮，点击进入下一个场景
@@ -92,9 +91,6 @@ function CardChoiseScene(game) {
 
     // 添加选择的卡牌
     this.addChoiseCard = function(image){
-
-       
-
         if(DataManager.heroHandCardIDList.length == 0){
             DataManager.heroHandCardIDList.push(image);
         }else{
