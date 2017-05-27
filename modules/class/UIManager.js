@@ -33,6 +33,7 @@ UIManager.prototype.init = function(game) {
 
     // 设置回合结束按钮
     DataManager.turnOverButton = this.setTurnOverButton(game);
+    
     // 设置敌人手牌
     DataManager.enemyHandCard = new EnemyHandCard(game);
 
@@ -52,7 +53,7 @@ UIManager.prototype.init = function(game) {
 
     // 剩余的卡牌提示
     DataManager.remainCard = new RemainCard(game); 
-    console.log(DataManager.remainCard);
+    // console.log(DataManager.remainCard);
 }
 
 // 设置背景

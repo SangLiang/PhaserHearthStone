@@ -5,7 +5,6 @@
 function StartScene(game) {
 
     this.create = function () {
-        console.log(Phaser.ScaleManager.SHOW_ALL);
         // 缩放模式
         // game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         // game.scale.scaleMode.maxHeight ="400px";

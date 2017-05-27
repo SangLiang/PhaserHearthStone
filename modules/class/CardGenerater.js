@@ -18,4 +18,27 @@ CardGenerator.prototype.buildCardList = function(cardLength, minIndex, maxIndex)
     return cardList;
 }
 
+// 通过玩家选择的卡片来生成完整卡组
+// @param cardLength [number] 卡组最大的长度
+// @param cardIndexList [obj array] 选择的卡组信息
+CardGenerator.prototype.buildCardListByUserChoise = function(cardLength , cardInfoList){
+	console.log(cardInfoList);
+
+	var tempList = [];
+	var cardList = [];
+	for(var i = 0; i < cardInfoList.length; i++){
+
+		tempList.push(cardInfoList[i].id);
+	}
+
+	var _length = tempList.length;
+
+	for(var j = 0; j < cardLength; j++){
+		var _ramdom = Math.floor(Math.random() * _length);
+		cardList.push(tempList[_ramdom]);
+	}
+
+	return cardList;
+}
+
 module.exports = CardGenerator;

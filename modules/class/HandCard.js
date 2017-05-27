@@ -158,7 +158,8 @@ HandCard.prototype.reListHandCard = function () {
  * @return {array} 卡组的ad数组
  */
 HandCard.prototype.setHandCardList = function () {
-    var cardGenerater = new CardGenerater();
+    var cardGenerater = new CardGenerater(); 
+
     var cardIDList = cardGenerater.buildCardList(CardConfig.cardLength, 1, CardConfig.card_info.length);
     return cardIDList;
 }

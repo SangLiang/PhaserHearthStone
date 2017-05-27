@@ -54,6 +54,8 @@ function CardChoiseScene(game) {
             fontSize: "32pt"
         }
 
+        this.choisedCardList = [];
+        console.log(this);    
         var bg = game.add.image(0,0,"choiseScene_bg");
 
         // 确定按钮，点击进入下一个场景
@@ -90,6 +92,9 @@ function CardChoiseScene(game) {
 
     // 添加选择的卡牌
     this.addChoiseCard = function(image){
+
+       
+
         if(DataManager.heroHandCardIDList.length == 0){
             DataManager.heroHandCardIDList.push(image);
         }else{
@@ -98,12 +103,30 @@ function CardChoiseScene(game) {
                     return;
                 }
             }
+
+            if(this.choisedCardList.length != 0 ){
+                for(var i = 0; i < this.choisedCardList.length; i++){
+                    this.choisedCardList[i].destroy();
+                }
+            }
             DataManager.heroHandCardIDList.push(image);
         }
 
         for(var j = 0; j < DataManager.heroHandCardIDList.length; j++){
+            // 添加已选卡片
             var image = game.add.image(40 +j*108,260,DataManager.heroHandCardIDList[j].name);
+            this.choisedCardList.push(image);
             image.scale.set(0.7);
+            image.id = DataManager.heroHandCardIDList[j].id;
+            image.inputEnabled = true;
+            image.events.onInputDown.add(function(image){
+                for(var k = 0 ; k < DataManager.heroHandCardIDList.length; k++){
+                    if(image.id == DataManager.heroHandCardIDList[k].id){
+                        var _temp = DataManager.heroHandCardIDList.splice(k,1);
+                        image.destroy();
+                    }
+                }
+            });
         }
     }
 }

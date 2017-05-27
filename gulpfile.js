@@ -32,7 +32,7 @@ gulp.task('watch', function () {
 	gulp.watch(["./main.js","./modules/**/*.js"],["browserify"]);
 });
 
-gulp.task('default',['webserver','watch'], function () {
+gulp.task('default',['webserver','watch',"browserify"], function () {
 	console.log("Server is running now");
 });
 
