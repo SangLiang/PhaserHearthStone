@@ -107,7 +107,13 @@ AI.prototype.choiseAttackTarget = function (game) {
             if (DataManager.enemyFighters.fightObj[i].sleep == false) {
                 console.log("attack");
 
-                if (_enemyFightersAttack >= _heroFightersAttack) { // AI场攻大于玩家随从的场攻
+                // 如果电脑的随从总场攻大于玩家的所有随从的总场攻
+                var case_1 = _enemyFightersAttack >= _heroFightersAttack;
+
+                // 如果电脑的随从总场攻足矣杀死玩家
+                var case_2 = _enemyFightersAttack >= parseInt(DataManager.heroHead.HPObj.text);
+
+                if (case_1 || case_2) { // AI场攻大于玩家随从的场攻
                     alert("敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄");
                     // 更新攻击之后的状态
                     DataManager.enemyFighters.fightObj[i].sleep = true;
@@ -121,7 +127,7 @@ AI.prototype.choiseAttackTarget = function (game) {
                         return;
                     }
 
-                } else {
+                } else if(!case_1){
                     // AI场攻小于玩家场攻则攻击随从
                     alert("敌方的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了我方的" + DataManager.heroFighters.fightObj[0].cnName);
 
