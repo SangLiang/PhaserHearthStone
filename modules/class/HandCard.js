@@ -21,7 +21,7 @@ HandCard.prototype.init = function (game) {
     // this.setRealHandCard(game); // 真实卡面
 }
 
-// 构建手牌数组view
+// 构建手牌数组view  (卡背)
 HandCard.prototype.buildHandCardViewList = function (game) {
     // 截取卡组中的前四张
     var _list = this.cardIDList.splice(0, 4);
@@ -39,6 +39,7 @@ HandCard.prototype.buildHandCardViewList = function (game) {
                 card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
                 card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
                 card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+                card.cardInfo.cardType = CardConfig.card_info[j].type; // 卡牌类型
                 card.scale.set(0.5);
                 this.cardViewList.push(card);
             }
@@ -46,7 +47,7 @@ HandCard.prototype.buildHandCardViewList = function (game) {
     }
 }
 
-// 设置卡牌的数据显示
+// 设置卡牌的数据显示 (卡面)
 HandCard.prototype.setRealHandCard = function (game) {
     var _list = this.cardIDList.splice(0, 4);
 
@@ -60,6 +61,7 @@ HandCard.prototype.setRealHandCard = function (game) {
                 card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
                 card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
                 card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+                card.cardInfo.cardType = CardConfig.card_info[j].type; // 卡牌类型
                 card.scale.set(0.5);
 
                 this.cardObjList.push(card);
@@ -155,7 +157,7 @@ HandCard.prototype.reListHandCard = function () {
 
 /**
  *  生成卡牌id数组
- * @return {array} 卡组的ad数组
+ * @return {array} 卡组的id数组
  */
 HandCard.prototype.setHandCardList = function () {
     var cardGenerater = new CardGenerater(); 
