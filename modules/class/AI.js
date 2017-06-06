@@ -3,6 +3,7 @@
  */
 var DataManager = require("./DataManager");
 var EnemyFighter = require("./EnemyFighter");
+var ConsoleLog = require("./ConsoleLog");
 
 function AI() {
     this.enemyChoise = null;
@@ -16,14 +17,18 @@ AI.prototype.shotCard = function (game) {
     if (!this.enemyChoise) {
         // 没有合适的卡牌
         DataManager.turnOverButton.loadTexture("hero_turn_button");
-        alert("敌人选择不出牌,不知道有什么阴谋诡计");
+        // alert("敌人选择不出牌,不知道有什么阴谋诡计");
+        ConsoleLog.log("敌人选择不出牌,不知道有什么阴谋诡计");
+
         return;
     }
 
     try {
         if (DataManager.enemyFighters.fightObj.length >= 5) {
             DataManager.turnOverButton.loadTexture("hero_turn_button");
-            alert("敌人选择不出牌,不知道有什么阴谋诡计");
+            // alert("敌人选择不出牌,不知道有什么阴谋诡计");
+            ConsoleLog.log("敌人选择不出牌,不知道有什么阴谋诡计");
+            
             return;
         }
     } catch (e) {
@@ -72,8 +77,10 @@ AI.prototype.choiseAttackTarget = function (game) {
     if (DataManager.heroFighters == null) { // 判断玩家的随从是否存在
         for (var i = 0; i < DataManager.enemyFighters.fightObj.length; i++) {
             if (DataManager.enemyFighters.fightObj[i].sleep == false) {
-                alert("敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄");
-
+                var _str = "敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄";
+                // alert("敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄");
+                ConsoleLog.log(_str);
+                
                 // 更新攻击之后的状态
                 DataManager.enemyFighters.fightObj[i].sleep = true;
                 DataManager.enemyFighters.fightObj[i].alpha = 0.7;
@@ -114,7 +121,10 @@ AI.prototype.choiseAttackTarget = function (game) {
                 var case_2 = _enemyFightersAttack >= parseInt(DataManager.heroHead.HPObj.text);
 
                 if (case_1 || case_2) { // AI场攻大于玩家随从的场攻
-                    alert("敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄");
+                    // alert("敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄");
+                    var _str = "敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄";
+                    ConsoleLog.log(_str);
+
                     // 更新攻击之后的状态
                     DataManager.enemyFighters.fightObj[i].sleep = true;
                     DataManager.enemyFighters.fightObj[i].alpha = 0.7;
@@ -129,8 +139,11 @@ AI.prototype.choiseAttackTarget = function (game) {
 
                 } else if(!case_1){
                     // AI场攻小于玩家场攻则攻击随从
-                    alert("敌方的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了我方的" + DataManager.heroFighters.fightObj[0].cnName);
+                    // alert("敌方的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了我方的" + DataManager.heroFighters.fightObj[0].cnName);
 
+                    var _str = "敌方的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了我方的" + DataManager.heroFighters.fightObj[0].cnName;
+                    ConsoleLog.log(_str);
+                    
                     var _heroFightHP = DataManager.enemyFighters.fightObj[i].hp - DataManager.heroFighters.fightObj[0].attack;
                     var _enemyFightHP = DataManager.heroFighters.fightObj[0].hp - DataManager.enemyFighters.fightObj[i].attack;
 

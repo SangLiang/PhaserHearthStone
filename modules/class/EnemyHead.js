@@ -5,6 +5,7 @@
 var utils = require("../Utils");
 var Head = require("./Head");
 var DataManager = require("./DataManager");
+var ConsoleLog = require("./ConsoleLog");
 
 function EnemyHead(game, textureName, positionX, positionY) {
     Head.apply(this, arguments);
@@ -29,12 +30,14 @@ Head.prototype.setPic = function (game) {
             DataManager.heroFighterChoise.sleep = true;
             DataManager.heroFighterChoise.children[2].alpha = 0;
 
-            alert("我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人英雄");
-
+            // alert("我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人英雄");
+            var _str = "我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人英雄";
+            ConsoleLog.log(_str);
             DataManager.heroFighterChoise = null;
 
             if (parseInt(this.HPObj.text) <= 0) {
                 alert("玩家获取胜利，敌人阵亡");
+                // ConsoleLog.log("玩家获取胜利，敌人阵亡");
                 DataManager.result = 1;
                 game.state.start("ResultScene");
             }
