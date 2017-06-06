@@ -24,7 +24,8 @@ AI.prototype.shotCard = function (game) {
     }
 
     try {
-        if (DataManager.enemyFighters.fightObj.length >= 5) {
+        // 只判断随从的情况，允许使用魔法
+        if (DataManager.enemyFighters.fightObj.length >= 5 && this.enemyChoise.cardInfo.cardType == "entourage") {
             DataManager.turnOverButton.loadTexture("hero_turn_button");
             // alert("敌人选择不出牌,不知道有什么阴谋诡计");
             ConsoleLog.log("敌人选择不出牌,不知道有什么阴谋诡计");
@@ -35,10 +36,15 @@ AI.prototype.shotCard = function (game) {
 
     }
 
-    console.log(this.enemyChoise.cardInfo);
-
     if (this.enemyChoise.cardInfo.cardType == "magic") {
-        console.log("敌人的魔法拍");
+        switch(this.enemyChoise.cardInfo.cnName){
+            case "奥术智慧":
+                ConsoleLog.log("敌人使用了魔法：奥术智慧");
+                DataManager.enemyHandCard.addCard(game);
+                DataManager.enemyHandCard.addCard(game);
+                DataManager.remainCard.refresh();
+                break; 
+        }
     } else if (this.enemyChoise.cardInfo.cardType == "entourage") {
         if (DataManager.enemyFighters == null) {
             DataManager.enemyFighters = new EnemyFighter(game);
@@ -118,7 +124,7 @@ AI.prototype.choiseAttackTarget = function (game) {
         var _destroyList = [];
         for (var i = 0; i < DataManager.enemyFighters.fightObj.length; i++) {
             if (DataManager.enemyFighters.fightObj[i].sleep == false) {
-                console.log("attack");
+                // console.log("attack");
 
                 // 如果电脑的随从总场攻大于玩家的所有随从的总场攻
                 var case_1 = _enemyFightersAttack >= _heroFightersAttack;

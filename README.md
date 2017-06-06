@@ -30,6 +30,16 @@ gulp default
 
 ### 3.更新日志  
 
+2017.6.6 v1.2.0
+
+1.添加新的卡牌
+
+2.添加战斗日志系统
+
+3.添加新的魔法卡牌逻辑
+
+![image](https://raw.githubusercontent.com/SangLiang/Blog/gh-pages/pics/201609/35.gif)
+
 2017.5.27  v1.1.0
 
 1.玩家可以选择自己的手牌(将不会随机生成卡池中的所有卡牌，而是随机生成玩家选择过的卡牌)

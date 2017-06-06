@@ -12,7 +12,7 @@ var HeroFee = require("./HeroFee");
 var EnemyFee = require("./EnemyFee");
 var AI = require("./AI");
 var RemainCard = require("./RemainCard");
-
+var ConsoleLog = require("./ConsoleLog");
 var HeroFighter = require("./HeroFighter");
 
 function UIManager(game) {
@@ -53,7 +53,6 @@ UIManager.prototype.init = function(game) {
 
     // 剩余的卡牌提示
     DataManager.remainCard = new RemainCard(game); 
-    // console.log(DataManager.remainCard);
 }
 
 // 设置背景
@@ -114,7 +113,8 @@ UIManager.prototype.setShotCardButton = function(game) {
 
         // 控制玩家场上的随从
         try {
-            if (DataManager.heroFighters.fightObj.length >= 5) {
+            // 只判断是随从的情况
+            if (DataManager.heroFighters.fightObj.length >= 5 && DataManager.heroChoiseCard.cardInfo.cardType == "entourage") {
                 alert("您场上的随从已经到达了上限");
                 return;
             }
@@ -132,9 +132,15 @@ UIManager.prototype.setShotCardButton = function(game) {
             DataManager.heroFee.feeObj.setText(DataManager.heroCurrentFee + "/" + DataManager.fee);
 
             //  出牌之后创建随从
-            console.log(DataManager.heroChoiseCard.cardInfo);
             if(DataManager.heroChoiseCard.cardInfo.cardType == "magic"){
-                console.log("我在使用魔法牌");
+                switch(DataManager.heroChoiseCard.cardInfo.cnName){
+                    case "奥术智慧":
+                        DataManager.heroHandCard.addCard(game);
+                        DataManager.heroHandCard.addCard(game);
+                        DataManager.remainCard.refresh();
+                        ConsoleLog.log("我方使用了魔法：奥术智慧");
+                        break; 
+                }
             }else if(DataManager.heroChoiseCard.cardInfo.cardType == "entourage"){
                 if (DataManager.heroFighters == null) {
                     DataManager.heroFighters = new HeroFighter(game);

@@ -7,7 +7,6 @@ var DataManager = require("../class/DataManager");
 function ResultScene(game) {
     this.create = function () {
         if (DataManager.result == 0) {
-            console.log("敌人胜利");
             var text = game.add.text(game.world.centerX, game.world.centerY, "You Loss", {
                 fill: "#000",
             });
