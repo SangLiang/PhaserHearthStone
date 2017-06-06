@@ -61,7 +61,7 @@ var CardConfig = {
         "name": "arcaneWisdom",
         "fight": "",
         "cn_name": "奥术智慧",
-        "fee": 0,
+        "fee": 3,
         "attack": 0,
         "hp": 0,
         "id": 7,

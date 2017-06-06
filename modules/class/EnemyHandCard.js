@@ -60,6 +60,7 @@ EnemyHandCard.prototype.addCard = function (game) {
             card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
             card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
             card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+            card.cardInfo.cardType = CardConfig.card_info[j].type; // 卡牌类型
             card.scale.set(0.5);
             this.cardViewList.push(card);
         }

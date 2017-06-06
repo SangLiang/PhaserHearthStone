@@ -108,6 +108,7 @@ HandCard.prototype.addCard = function (game) {
             card.cardInfo.cnName = CardConfig.card_info[j].cn_name; // 中文名称
             card.cardInfo.fee = CardConfig.card_info[j].fee; // 召唤费用
             card.cardInfo.fight = CardConfig.card_info[j].fight; // 战斗图片
+            card.cardInfo.cardType = CardConfig.card_info[j].type;// 卡牌类型
             card.scale.set(0.5);
 
             this.cardObjList.push(card);
@@ -117,7 +118,7 @@ HandCard.prototype.addCard = function (game) {
                 this.inputEnabled = false; // 禁止玩家不停点击
                 if (DataManager.heroChoiseCard == null) {
                     DataManager.heroChoiseCard = this;
-                } else {
+                } else { 
                     // 注册动画事件
                     var tween = game.add.tween(DataManager.heroChoiseCard).to({ y: DataManager.heroChoiseCard.y + 20 }, 200, "Linear", true);
                     DataManager.heroChoiseCard.inputEnabled = true;

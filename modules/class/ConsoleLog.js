@@ -12,7 +12,7 @@ ConsoleLog.log = function(str) {
     text.innerHTML = ConsoleLog.logText;
 }
 
-// 清除所有日志
+// todo:清除所有日志
 ConsoleLog.clean = function(){
 
 }

@@ -14,7 +14,7 @@ function EnemyFighter(game) {
 
 utils.extend(EnemyFighter, Fighter);
 
-// 重写choiseFighter 
+// @override
 // 在玩家选择敌方随从时进行战斗结算
 EnemyFighter.prototype.choiceFighter = function (fightBg) {
     if (DataManager.heroFighterChoise == null) {

@@ -35,11 +35,17 @@ AI.prototype.shotCard = function (game) {
 
     }
 
-    if (DataManager.enemyFighters == null) {
-        DataManager.enemyFighters = new EnemyFighter(game);
-        DataManager.enemyFighters.buildFighter(game, this.enemyChoise.cardInfo.HP, this.enemyChoise.cardInfo.attack, this.enemyChoise.cardInfo.cnName, this.enemyChoise.cardInfo.fight);
-    } else {
-        DataManager.enemyFighters.buildFighter(game, this.enemyChoise.cardInfo.HP, this.enemyChoise.cardInfo.attack, this.enemyChoise.cardInfo.cnName, this.enemyChoise.cardInfo.fight);
+    console.log(this.enemyChoise.cardInfo);
+
+    if (this.enemyChoise.cardInfo.cardType == "magic") {
+        console.log("敌人的魔法拍");
+    } else if (this.enemyChoise.cardInfo.cardType == "entourage") {
+        if (DataManager.enemyFighters == null) {
+            DataManager.enemyFighters = new EnemyFighter(game);
+            DataManager.enemyFighters.buildFighter(game, this.enemyChoise.cardInfo.HP, this.enemyChoise.cardInfo.attack, this.enemyChoise.cardInfo.cnName, this.enemyChoise.cardInfo.fight);
+        } else {
+            DataManager.enemyFighters.buildFighter(game, this.enemyChoise.cardInfo.HP, this.enemyChoise.cardInfo.attack, this.enemyChoise.cardInfo.cnName, this.enemyChoise.cardInfo.fight);
+        }
     }
 
     this.enemyChoise.destroy();

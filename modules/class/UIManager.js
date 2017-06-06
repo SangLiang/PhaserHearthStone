@@ -131,12 +131,20 @@ UIManager.prototype.setShotCardButton = function(game) {
             DataManager.heroCurrentFee = DataManager.heroCurrentFee - DataManager.heroChoiseCard.cardInfo.fee;
             DataManager.heroFee.feeObj.setText(DataManager.heroCurrentFee + "/" + DataManager.fee);
 
-            if (DataManager.heroFighters == null) {
-                DataManager.heroFighters = new HeroFighter(game);
-                DataManager.heroFighters.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
-            } else {
-                DataManager.heroFighters.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
+            //  出牌之后创建随从
+            console.log(DataManager.heroChoiseCard.cardInfo);
+            if(DataManager.heroChoiseCard.cardInfo.cardType == "magic"){
+                console.log("我在使用魔法牌");
+            }else if(DataManager.heroChoiseCard.cardInfo.cardType == "entourage"){
+                if (DataManager.heroFighters == null) {
+                    DataManager.heroFighters = new HeroFighter(game);
+                    DataManager.heroFighters.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
+                } else {
+                    DataManager.heroFighters.buildFighter(game, DataManager.heroChoiseCard.cardInfo.HP, DataManager.heroChoiseCard.cardInfo.attack, DataManager.heroChoiseCard.cardInfo.cnName, DataManager.heroChoiseCard.cardInfo.fight);
+                }
             }
+
+          
 
             DataManager.heroChoiseCard.destroy();
             DataManager.heroHandCard.reListHandCard();

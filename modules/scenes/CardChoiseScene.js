@@ -24,6 +24,7 @@ function CardChoiseScene(game) {
         game.load.image("choiseScene_bg","../../resource/choiseScene_bg.jpg");
         game.load.image("confirm_btn","../../resource/confirm_btn.png");
 
+        game.load.image("arcaneWisdom","../../resource/arcaneWisdom.png");
         game.load.image("dead_wing", "../../resource/dead_wing.png");
         game.load.image("dead_wing_fight", "../../resource/dead_wing_fight.png");
         game.load.image("fishman_baby", "../../resource/fishman_baby.png");
@@ -110,9 +111,9 @@ function CardChoiseScene(game) {
 
         for(var j = 0; j < DataManager.heroHandCardIDList.length; j++){
             // 添加已选卡片
-            var image = game.add.image(40 +j*108,260,DataManager.heroHandCardIDList[j].name);
+            var image = game.add.image(46 +j*104,260,DataManager.heroHandCardIDList[j].name);
             this.choisedCardList.push(image);
-            image.scale.set(0.7);
+            image.scale.set(0.6);
             image.id = DataManager.heroHandCardIDList[j].id;
             image.inputEnabled = true;
             image.events.onInputDown.add(function(image){
