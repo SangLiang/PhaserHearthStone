@@ -117,6 +117,10 @@ function CardChoiseScene(game) {
             image.id = DataManager.heroHandCardIDList[j].id;
             image.inputEnabled = true;
             image.events.onInputDown.add(function(image){
+
+                // var tween = game.add.tween(image.scale);
+                // tween.to({x:1,y:1}, 500, 'Linear', true, 0);
+                console.log(image);
                 for(var k = 0 ; k < DataManager.heroHandCardIDList.length; k++){
                     if(image.id == DataManager.heroHandCardIDList[k].id){
                         var _temp = DataManager.heroHandCardIDList.splice(k,1);
