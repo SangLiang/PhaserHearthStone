@@ -97,6 +97,8 @@ HandCard.prototype.setRealHandCard = function(game) {
                         y: 0.65
                     }, 200, "Linear");
                     DataManager.heroChoiseCard.index = 100;
+
+                    // 将所点击的卡牌移动到最顶端
                     game.world.bringToTop(DataManager.heroChoiseCard);
                     tween.start();
                     tweenScale.start();
@@ -159,6 +161,9 @@ HandCard.prototype.addCard = function(game) {
                     x: 0.65,
                     y: 0.65
                 }, 200, "Linear");
+
+                // 将所点击的卡牌移动到最顶端
+                game.world.bringToTop(DataManager.heroChoiseCard);
                 tween.start();
 
                 tweenScale.start();
