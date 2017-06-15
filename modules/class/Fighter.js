@@ -24,6 +24,7 @@ Fighter.prototype.buildFighter = function (game, hp, attack, cnName, picName) {
     fightBg.cnName = cnName;
     fightBg.picName = picName;
     fightBg.sleep = true; // 休眠状态，在出牌的第一回合无法进行攻击
+    
     var _style = {
         fill: "#fff",
         fontSize: "12pt"

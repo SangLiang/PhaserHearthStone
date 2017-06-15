@@ -2,9 +2,9 @@
  * 敌人的战场随从
  */
 var DataManager = require("./DataManager");
-
 var utils = require("../Utils");
 var Fighter = require("./Fighter");
+var ConsoleLog = require("./ConsoleLog");
 
 function EnemyFighter(game) {
     Fighter.apply(this, arguments);
@@ -14,7 +14,7 @@ function EnemyFighter(game) {
 
 utils.extend(EnemyFighter, Fighter);
 
-// 重写choiseFighter 
+// @override
 // 在玩家选择敌方随从时进行战斗结算
 EnemyFighter.prototype.choiceFighter = function (fightBg) {
     if (DataManager.heroFighterChoise == null) {
@@ -22,8 +22,9 @@ EnemyFighter.prototype.choiceFighter = function (fightBg) {
     }
     else {
 
-        alert("我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人的" + fightBg.cnName);
-
+        // alert("我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人的" + fightBg.cnName);
+        var _str = "我方的" + DataManager.heroFighterChoise.cnName + "攻击了敌人的" + fightBg.cnName;
+        ConsoleLog.log(_str);
         var _heroFightHP = DataManager.heroFighterChoise.hp - fightBg.attack;
         var _enemyFightHP = fightBg.hp - DataManager.heroFighterChoise.attack;
 

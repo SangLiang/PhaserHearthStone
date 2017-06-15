@@ -13,7 +13,6 @@ function RemainCard(game) {
 RemainCard.prototype.init = function (game) {
 	this.heroRemainCard = this.setHeroRemainCard(game);
 	this.enemyRemainCard = this.setEnemyRemainCard(game);
-	console.log(this.heroRemainCard); 
 }
 
 // 设置英雄的剩余卡片提示

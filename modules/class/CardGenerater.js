@@ -22,7 +22,7 @@ CardGenerator.prototype.buildCardList = function(cardLength, minIndex, maxIndex)
 // @param cardLength [number] 卡组最大的长度
 // @param cardIndexList [obj array] 选择的卡组信息
 CardGenerator.prototype.buildCardListByUserChoise = function(cardLength , cardInfoList){
-	console.log(cardInfoList);
+	// console.log(cardInfoList);
 
 	var tempList = [];
 	var cardList = [];
