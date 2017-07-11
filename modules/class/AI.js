@@ -17,7 +17,6 @@ AI.prototype.shotCard = function (game) {
     if (!this.enemyChoise) {
         // 没有合适的卡牌
         DataManager.turnOverButton.loadTexture("hero_turn_button");
-        // alert("敌人选择不出牌,不知道有什么阴谋诡计");
         ConsoleLog.log("敌人选择不出牌,不知道有什么阴谋诡计");
 
         return;
@@ -27,9 +26,8 @@ AI.prototype.shotCard = function (game) {
         // 只判断随从的情况，允许使用魔法
         if (DataManager.enemyFighters.fightObj.length >= 5 && this.enemyChoise.cardInfo.cardType == "entourage") {
             DataManager.turnOverButton.loadTexture("hero_turn_button");
-            // alert("敌人选择不出牌,不知道有什么阴谋诡计");
             ConsoleLog.log("敌人选择不出牌,不知道有什么阴谋诡计");
-            
+
             return;
         }
     } catch (e) {
@@ -43,7 +41,7 @@ AI.prototype.shotCard = function (game) {
                 DataManager.enemyHandCard.addCard(game);
                 DataManager.enemyHandCard.addCard(game);
                 DataManager.remainCard.refresh();
-                break; 
+                break;
         }
     } else if (this.enemyChoise.cardInfo.cardType == "entourage") {
         if (DataManager.enemyFighters == null) {
@@ -90,9 +88,8 @@ AI.prototype.choiseAttackTarget = function (game) {
         for (var i = 0; i < DataManager.enemyFighters.fightObj.length; i++) {
             if (DataManager.enemyFighters.fightObj[i].sleep == false) {
                 var _str = "敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄";
-                // alert("敌人的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了你的英雄");
                 ConsoleLog.log(_str);
-                
+
                 // 更新攻击之后的状态
                 DataManager.enemyFighters.fightObj[i].sleep = true;
                 DataManager.enemyFighters.fightObj[i].alpha = 0.7;
@@ -155,7 +152,7 @@ AI.prototype.choiseAttackTarget = function (game) {
 
                     var _str = "敌方的" + DataManager.enemyFighters.fightObj[i].cnName + "攻击了我方的" + DataManager.heroFighters.fightObj[0].cnName;
                     ConsoleLog.log(_str);
-                    
+
                     var _heroFightHP = DataManager.enemyFighters.fightObj[i].hp - DataManager.heroFighters.fightObj[0].attack;
                     var _enemyFightHP = DataManager.heroFighters.fightObj[0].hp - DataManager.enemyFighters.fightObj[i].attack;
 
