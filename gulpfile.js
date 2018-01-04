@@ -11,7 +11,7 @@ var $ = require('gulp-load-plugins')();
 gulp.task('webserver', function () {
 	return gulp.src('./')
 		.pipe(webserver({
-			livereload: true,
+			livereload: false,
 			directoryListing: true,
 			host:"0.0.0.0",
 			open: 'http://127.0.0.1:8000/index.html',

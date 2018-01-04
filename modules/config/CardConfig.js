@@ -11,7 +11,8 @@ var CardConfig = {
         "attack": 1,
         "hp": 1,
         "id": 1,
-        "type":"entourage" // 随从
+        "type":"entourage",            // 随从
+        "quality":"1"                  // 卡牌质量 1:基本  2:优秀（卡组中允许有两张） 3:卡组唯一
     }, {
         "name": "freshwater_crocodile",
         "fight": "freshwater_crocodile_fight",
@@ -20,7 +21,8 @@ var CardConfig = {
         "attack": 2,
         "hp": 3,
         "id": 2,
-        "type":"entourage"
+        "type":"entourage",
+        "quality":"1"
     }, {
         "name": "ogre",
         "fight": "ogre_fight",
@@ -29,7 +31,8 @@ var CardConfig = {
         "attack": 4,
         "hp": 4,
         "id": 3,
-        "type":"entourage"
+        "type":"entourage",
+        "quality":"1"
     }, {
         "name": "dead_wing",
         "fight": "dead_wing_fight",
@@ -38,7 +41,8 @@ var CardConfig = {
         "attack": 9,
         "hp": 9,
         "id": 4,
-        "type":"entourage"
+        "type":"entourage",
+        "quality":"3"
     },{
         "name": "rose",
         "fight": "rose_fight",
@@ -47,7 +51,8 @@ var CardConfig = {
         "attack": 8,
         "hp": 8,
         "id": 5,
-        "type":"entourage"
+        "type":"entourage",
+        "quality":"3"
     },{
         "name": "velociraptor",
         "fight": "velociraptor_fight",
@@ -56,7 +61,8 @@ var CardConfig = {
         "attack": 4,
         "hp": 5,
         "id": 6,
-        "type":"entourage"
+        "type":"entourage",
+        "quality":"1"
     },{
         "name": "arcaneWisdom",
         "fight": "",
@@ -65,10 +71,12 @@ var CardConfig = {
         "attack": 0,
         "hp": 0,
         "id": 7,
-        "type":"magic" // magic魔法牌
-    }], // 卡牌的相关信息
-    "cardLength": 30, // 卡组长度
-    "cardInitialLength": 4, // 初始化手牌长度
+        "type":"magic",          // magic魔法牌
+        "quality":"1"
+    }],
+    // 卡牌的相关信息
+    "cardLength": 30,           // 卡组长度
+    "cardInitialLength": 4,     // 初始化手牌长度
 }
 
 module.exports = CardConfig;

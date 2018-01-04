@@ -48,7 +48,7 @@ Fighter.prototype.buildFighter = function (game, hp, attack, cnName, picName) {
     fightBg.addChild(attack_text);
     fightBg.addChild(hp_text);
     fightBg.addChild(attack_tag);
-    fightBg.alpha = 0.7; // sleep状态无法攻击
+    fightBg.alpha = 0.7;     // sleep状态无法攻击
     this.fightObj.push(fightBg);
     this.reListObjs();
 

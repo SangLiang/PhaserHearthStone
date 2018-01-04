@@ -73,7 +73,7 @@ function CardChoiseScene(game) {
 
     }
     
-    // 待选卡片
+    // 待选卡片生成
     this.buildCommonCard = function(CardConfig){
         var self = this;
 
@@ -82,8 +82,10 @@ function CardChoiseScene(game) {
             image.scale.set(0.5);
             image.id = CardConfig.card_info[i].id;
             image.name = CardConfig.card_info[i].name;
+            image.quality = CardConfig.card_info[i].quality;
             image.inputEnabled = true;
 
+            // 添加卡牌进生成数组
             image.events.onInputDown.add(function(image){
                 self.addChoiseCard(image);
             });
@@ -92,9 +94,11 @@ function CardChoiseScene(game) {
 
     // 添加选择的卡牌
     this.addChoiseCard = function(image){
+        // console.log(DataManager.heroHandCardIDList);
         if(DataManager.heroHandCardIDList.length == 0){
             DataManager.heroHandCardIDList.push(image);
         }else{
+
             for(var i = 0; i<DataManager.heroHandCardIDList.length; i++){
                 if(DataManager.heroHandCardIDList[i].id == image.id){
                     return;
@@ -120,7 +124,6 @@ function CardChoiseScene(game) {
 
                 // var tween = game.add.tween(image.scale);
                 // tween.to({x:1,y:1}, 500, 'Linear', true, 0);
-                console.log(image);
                 for(var k = 0 ; k < DataManager.heroHandCardIDList.length; k++){
                     if(image.id == DataManager.heroHandCardIDList[k].id){
                         var _temp = DataManager.heroHandCardIDList.splice(k,1);
